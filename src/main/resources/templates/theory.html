@@ -53,20 +53,6 @@ and open the template in the editor.
                 </div>
             </nav>
             <h3 class="border-bottom border-gray pb-2 mb-0">Theory</h3>
-            <!--            <div class="container-fluid">
-                            
-                            <div th:each="as : ${theories}" class="col-md-8 d-flex align-self-stretch ftco-animate fadeInUp ftco-animated">
-                                <div class="card-group">
-                                    <div class="card-body">
-                                        <div class="media-body">
-                                            <h3 class="heading mb-3" ><a th:href="${as.id}" th:text="${as.theoryTitle}" style="color: #00dd1c"></a></h3>
-                                            <p th:text="${as.theoryDefiniton}" style="color: #491217"></p>
-                                        </div>
-                                    </div>
-            
-                                </div>
-                            </div>
-                        </div>-->
 
             <div class="my-3 p-3 bg-white rounded shadow-sm" th:each="as : ${theories}">
 
