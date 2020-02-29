@@ -71,12 +71,12 @@ public class LoginController {
             System.out.println("nama=" + employeeLogin.getEmployee().getLastName());
             System.out.println("email=" + employeeLogin.getEmployee().getEmail());
             if (employeeLogin.getEmployee().getId() != null) {
-                String pattern = "YYYY-DD-MM";
+                String pattern = "yyyy-mm-dd";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 Date date;
                 try {
                     date = simpleDateFormat.parse(employeeLogin.getEmployee().getBirthDate());
-                    Employee employee = new Employee(employeeLogin.getEmployee().getId(), employeeLogin.getEmployee().getFirstName() + employeeLogin.getEmployee().getLastName(), employeeLogin.getEmployee().getEmail(), 1, date);
+                    Employee employee = new Employee(employeeLogin.getEmployee().getId(), employeeLogin.getEmployee().getFirstName() + " "+employeeLogin.getEmployee().getLastName(), employeeLogin.getEmployee().getEmail(), 1, date);
                     rest.save(employee);
 
                 } catch (ParseException ex) {
