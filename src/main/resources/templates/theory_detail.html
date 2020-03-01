@@ -50,24 +50,45 @@
                 <div id="breadcrumb">
                     <a th:href="@{theory}" title="Go to Theory" class="tip-bottom"><i class="icon-tasks"></i> Theory
                     </a>
+                    <a th:href="@{theory_detail}" title="Go to Theory Detail" class="tip-bottom"><i class="icon-tasks"></i> Theory Detail
+                    </a>
                 </div>
+                <h1>
+                    <strong th:text="${theory.theoryTitle}"></strong>
+                </h1>
             </div>
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="widget-box">
-                            <div class="widget-title"> <span class="icon"> <i class="icon-refresh"></i> </span>
-                                <h5>News updates</h5>
+                            <div class="widget-title"> <span class="icon"> <i class="icon-list"></i> </span>
+                                <h5></h5>
                             </div>
-                            <div class="widget-content nopadding updates">
-                                <div class="new-update clearfix" th:each=" as : ${theories}">
-                                    <div class="update-done" >
-                                        <a th:href="'theory_detail?id='+${as.id}" title="">
-                                            <h4 th:text="${as.theoryTitle}"></h4>
-                                        </a>
-                                        <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
-                                    </div>
-                                </div>
+                            <div class="widget-content" th:text="${theory.theoryDefiniton}"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
+                        </div>
+
+
+                        <div class="widget-box">
+                            <div class="widget-title"> <span class="icon"><i class="icon-time"></i></span>
+                                <h5>Soal</h5>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Status</th>
+                                            <th>Opts</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="taskDesc"><i class="icon-info-sign"></i> Making The New Suit</td>
+                                            <td class="taskStatus"><span class="in-progress">in progress</span></td>
+                                            <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

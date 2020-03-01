@@ -5,13 +5,13 @@
  */
 package com.mii._ConsumeAPI.services;
 
-import com.mii._ConsumeAPI.entities.Employee;
+import com.mii._ConsumeAPI.entities.Quiz;
 import com.mii._ConsumeAPI.entities.Theory;
-import com.mii._ConsumeAPI.repositories.TheoryRepository;
+import com.mii._ConsumeAPI.repositories.QuizRepository;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
-import java.util.Collections;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,26 +21,25 @@ import org.springframework.web.client.RestTemplate;
  * @author BWP
  */
 @Service
-public class TheoryService {
-    
+public class QuizService {
     @Autowired
-    TheoryRepository theoryRepository;
+    QuizRepository quizRepository;
     
     
-    public Iterable<Theory> getAll(){
-        return theoryRepository.findAll();
+    public Iterable<Quiz> getAll(){
+        return quizRepository.findAll();
     }
     
-    public Theory getById(String id){
-        return theoryRepository.findById(new Integer(id)).get();
+    public Quiz getById(String id){
+        return quizRepository.findById(id).get();
     }
     
-    public Theory save(Theory theory){
-        return theoryRepository.save(theory);
+    public Quiz save(Quiz quiz){
+        return quizRepository.save(quiz);
     }
     
     public void delete(String id){
-        theoryRepository.delete(new Theory(Integer.parseInt(id)));
+        quizRepository.delete(new Quiz(id));
     }
     
 }

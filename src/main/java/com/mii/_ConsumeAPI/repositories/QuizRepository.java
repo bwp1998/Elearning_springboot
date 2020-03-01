@@ -5,16 +5,14 @@
  */
 package com.mii._ConsumeAPI.repositories;
 
-import com.mii._ConsumeAPI.entities.Theory;
+import com.mii._ConsumeAPI.entities.Quiz;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author BWP
  */
-@Repository
-public interface TheoryRepository extends CrudRepository<Theory, Integer>{
+public interface QuizRepository extends CrudRepository<Quiz, String>{
 //    @Query(value="Select * from tb_m_department where id = ?1", nativeQuery = true)
 //    public Department getById(String id);
 }
