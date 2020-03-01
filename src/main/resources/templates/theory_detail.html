@@ -85,7 +85,7 @@
                                         <tr th:each="as : ${quizs}">
                                             <td class="taskDesc" th:text="${as.id+' || '+as.detail}"><i class="icon-info-sign"></i></td>
                                             <td class="taskStatus"><span class="in-progress" th:text="${as.quizTime}"></span></td>
-                                            <td><a href="#" class="btn btn-primary btn-sm" role="button">Mulai</a></td>
+                                            <td><a th:href="'answer?id='+${as.id}" class="btn btn-primary btn-sm" role="button">Mulai</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
