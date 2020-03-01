@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author BWP
+ * @author iqbaloutlaw
  */
 @Entity
 @Table(name = "emp_action")
@@ -55,13 +55,16 @@ public class EmpAction implements Serializable {
     private Date actionDate;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 1000)
     @Column(name = "action_comment")
     private String actionComment;
     @Basic(optional = false)
     @NotNull
     @Column(name = "rate")
     private int rate;
+    @JoinColumn(name = "employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee employee;
     @JoinColumn(name = "forum", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Forum forum;
@@ -118,6 +121,14 @@ public class EmpAction implements Serializable {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Forum getForum() {
