@@ -39,8 +39,10 @@ public class TheoryController {
         
         model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
         model.addAttribute("theory", theoryservice.getById(request.getParameter("id")));
-        model.addAttribute("quizs",quizService.getAll());
-        System.out.println();
+//        model.addAttribute("quizs",quizService.getAll());
+        model.addAttribute("quizs",quizService.getByTheory(request.getParameter("id")));
+//        System.out.println(quizService.getByTheory(1));
+        System.out.println("QUIZ = "+ request.getAttribute("quizs"));
         System.out.println("IDNYA WEI "+request.getParameter("id"));
 //        System.out.println("IDNYA WEI "+model.getAttribute("theory"));
         return "theory_detail";
