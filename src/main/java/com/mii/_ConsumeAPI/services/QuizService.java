@@ -9,6 +9,7 @@ import com.mii._ConsumeAPI.entities.Quiz;
 import com.mii._ConsumeAPI.entities.Theory;
 import com.mii._ConsumeAPI.repositories.QuizRepository;
 import java.util.Collections;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +26,6 @@ public class QuizService {
     @Autowired
     QuizRepository quizRepository;
     
-    
     public Iterable<Quiz> getAll(){
         return quizRepository.findAll();
     }
@@ -41,5 +41,10 @@ public class QuizService {
     public void delete(String id){
         quizRepository.delete(new Quiz(id));
     }
+    
+    public List<Quiz> getByTheory(String id){
+        return quizRepository.getByTheory(Integer.parseInt(id));
+        //s
+    } 
     
 }
