@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.ui.Model;
@@ -54,7 +55,7 @@ public class LoginController {
     }
 
     @PostMapping("/verification")
-    public String verification(LoginData loginData, RedirectAttributes redirect) { //, Model model perubahan parameter model ndak ada (coba)
+    public String verification(LoginData loginData, RedirectAttributes redirect, HttpServletRequest request) { //, Model model perubahan parameter model ndak ada (coba)
         String result = "";
         EmployeeLogin employeeLogin = rest.login(loginData);
         System.out.println(employeeLogin.getStatus());
@@ -65,25 +66,30 @@ public class LoginController {
             //diberi akses 
             PreAuthenticatedAuthenticationToken authentication = new PreAuthenticatedAuthenticationToken(user, "", user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-//            model.addAttribute("nama", employeeLogin.getEmployee().getFirstName());
+
 //            System.out.println("NAMANYA = "+ employeeLogin.getEmployee().getFirstName()); // coba
-            System.out.println("id=" + employeeLogin.getEmployee().getId());
-            System.out.println("nama=" + employeeLogin.getEmployee().getLastName());
-            System.out.println("email=" + employeeLogin.getEmployee().getEmail());
+//            System.out.println("id=" + employeeLogin.getEmployee().getId());
+//            System.out.println("nama=" + employeeLogin.getEmployee().getLastName());
+//            System.out.println("email=" + employeeLogin.getEmployee().getEmail());
             if (employeeLogin.getEmployee().getId() != null) {
                 String pattern = "yyyy-mm-dd";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 Date date;
                 try {
                     date = simpleDateFormat.parse(employeeLogin.getEmployee().getBirthDate());
-                    Employee employee = new Employee(employeeLogin.getEmployee().getId(), employeeLogin.getEmployee().getFirstName() + " "+employeeLogin.getEmployee().getLastName(), employeeLogin.getEmployee().getEmail(), 1, date);
-                    rest.save(employee);
+                    Employee employee = new Employee(employeeLogin.getEmployee().getId(), 
+                            employeeLogin.getEmployee().getFirstName() + " " + employeeLogin.getEmployee().getLastName(), 
+                            employeeLogin.getEmployee().getEmail(), 1, date);
+                    rest.save(employee); //send ke database local
+                    request.getSession().setAttribute("employee", employeeLogin.getEmployee().getFirstName());
+                    System.out.println("NAMANYA = " + request.getSession().getAttribute("employee"));
 
                 } catch (ParseException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
+
             result = "redirect:/";
         } else {
             result = "redirect:/login";

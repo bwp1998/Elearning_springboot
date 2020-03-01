@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author BWP
  */
 @Repository
-public interface TheoryRepository extends CrudRepository<Theory, String>{
+public interface TheoryRepository extends CrudRepository<Theory, Integer>{
 //    @Query(value="Select * from tb_m_department where id = ?1", nativeQuery = true)
 //    public Department getById(String id);
 }

@@ -23,14 +23,6 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class TheoryService {
     
-    @Value("${data.url.jwt}")
-    private String url;
-    
-    @Value("${data.api.key}")
-    private String key;
-    
-    private static final RestTemplate restTemplate = new RestTemplate();
-    
     @Autowired
     TheoryRepository theoryRepository;
     
@@ -40,23 +32,15 @@ public class TheoryService {
     }
     
     public Theory getById(String id){
-        return theoryRepository.findById(id).get();
+        return theoryRepository.findById(new Integer(id)).get();
     }
     
-    public Theory save(Theory employee){
-        return theoryRepository.save(employee);
+    public Theory save(Theory theory){
+        return theoryRepository.save(theory);
     }
     
     public void delete(String id){
         theoryRepository.delete(new Theory(Integer.parseInt(id)));
     }
     
-    private HttpHeaders getHeaders() {
-        return new HttpHeaders() {
-            {
-                set("Authorization", key);
-                setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-            }
-        };
-    }
 }

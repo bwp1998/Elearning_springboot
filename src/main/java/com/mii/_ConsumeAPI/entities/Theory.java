@@ -76,7 +76,7 @@ public class Theory implements Serializable {
         this.theoryTitle = theoryTitle;
         this.theoryDefiniton = theoryDefiniton;
     }
-
+    
     public Integer getId() {
         return id;
     }
