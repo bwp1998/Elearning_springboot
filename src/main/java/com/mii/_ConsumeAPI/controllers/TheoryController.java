@@ -36,11 +36,11 @@ public class TheoryController {
     
     @RequestMapping("/theory_detail")
     public String theoryDetail(Model model, HttpServletRequest request){
-//        Quiz quiz = new Quiz();
         
         model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
         model.addAttribute("theory", theoryservice.getById(request.getParameter("id")));
-//        model.addAttribute("quiz",quizService.);
+        model.addAttribute("quizs",quizService.getAll());
+        System.out.println();
         System.out.println("IDNYA WEI "+request.getParameter("id"));
 //        System.out.println("IDNYA WEI "+model.getAttribute("theory"));
         return "theory_detail";

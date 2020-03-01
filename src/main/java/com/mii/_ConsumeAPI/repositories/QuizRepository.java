@@ -6,6 +6,7 @@
 package com.mii._ConsumeAPI.repositories;
 
 import com.mii._ConsumeAPI.entities.Quiz;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**

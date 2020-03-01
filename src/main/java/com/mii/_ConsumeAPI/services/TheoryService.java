@@ -26,7 +26,6 @@ public class TheoryService {
     @Autowired
     TheoryRepository theoryRepository;
     
-    
     public Iterable<Theory> getAll(){
         return theoryRepository.findAll();
     }
@@ -42,5 +41,6 @@ public class TheoryService {
     public void delete(String id){
         theoryRepository.delete(new Theory(Integer.parseInt(id)));
     }
+    
     
 }

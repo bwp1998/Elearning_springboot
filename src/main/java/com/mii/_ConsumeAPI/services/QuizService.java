@@ -25,7 +25,6 @@ public class QuizService {
     @Autowired
     QuizRepository quizRepository;
     
-    
     public Iterable<Quiz> getAll(){
         return quizRepository.findAll();
     }
