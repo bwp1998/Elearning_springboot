@@ -77,15 +77,15 @@
                                     <thead>
                                         <tr>
                                             <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Opts</th>
+                                            <th>Waktu (Menit)</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="taskDesc"><i class="icon-info-sign"></i> Making The New Suit</td>
-                                            <td class="taskStatus"><span class="in-progress">in progress</span></td>
-                                            <td class="taskOptions"><a href="#" class="tip-top" data-original-title="Update"><i class="icon-ok"></i></a> <a href="#" class="tip-top" data-original-title="Delete"><i class="icon-remove"></i></a></td>
+                                        <tr th:each="as : ${quizs}">
+                                            <td class="taskDesc" th:text="${as.id+' || '+as.detail}"><i class="icon-info-sign"></i></td>
+                                            <td class="taskStatus"><span class="in-progress" th:text="${as.quizTime}"></span></td>
+                                            <td><a href="#" class="btn btn-primary btn-sm" role="button">Mulai</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
