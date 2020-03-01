@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author BWP
+ * @author iqbaloutlaw
  */
 @Entity
 @Table(name = "quiz")
@@ -48,7 +48,7 @@ public class Quiz implements Serializable {
     private String id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 400)
     @Column(name = "detail")
     private String detail;
     @Basic(optional = false)

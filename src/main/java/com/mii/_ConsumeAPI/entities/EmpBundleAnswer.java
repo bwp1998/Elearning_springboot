@@ -14,6 +14,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author BWP
+ * @author iqbaloutlaw
  */
 @Entity
 @Table(name = "emp_bundle_answer")
@@ -55,6 +57,9 @@ public class EmpBundleAnswer implements Serializable {
     private Date answerDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empBundleAnswer", fetch = FetchType.LAZY)
     private List<AnswerQuestion> answerQuestionList;
+    @JoinColumn(name = "employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee employee;
 
     public EmpBundleAnswer() {
     }
@@ -100,6 +105,14 @@ public class EmpBundleAnswer implements Serializable {
 
     public void setAnswerQuestionList(List<AnswerQuestion> answerQuestionList) {
         this.answerQuestionList = answerQuestionList;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override

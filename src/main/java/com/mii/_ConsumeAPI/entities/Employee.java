@@ -7,25 +7,30 @@ package com.mii._ConsumeAPI.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author BWP
+ * @author iqbaloutlaw
  */
 @Entity
-@Table(name = "employee", catalog = "db_elearning", schema = "")
+@Table(name = "employee")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e")
@@ -63,6 +68,14 @@ public class Employee implements Serializable {
     @Column(name = "hire_date")
     @Temporal(TemporalType.DATE)
     private Date hireDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<EmpJoin> empJoinList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<EmpAction> empActionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<EmpBundleAnswer> empBundleAnswerList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator", fetch = FetchType.LAZY)
+    private List<Theory> theoryList;
 
     public Employee() {
     }
@@ -77,23 +90,6 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    /**
-     * no phone number
-     * @param id
-     * @param name
-     * @param email
-     * @param isActive
-     * @param hireDate 
-     */
-    public Employee(String id, String name, String email, Integer isActive, Date hireDate) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.isActive = isActive;
-        this.hireDate = hireDate;
-    }
-    
-    
     public String getId() {
         return id;
     }
@@ -140,6 +136,42 @@ public class Employee implements Serializable {
 
     public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
+    }
+
+    @XmlTransient
+    public List<EmpJoin> getEmpJoinList() {
+        return empJoinList;
+    }
+
+    public void setEmpJoinList(List<EmpJoin> empJoinList) {
+        this.empJoinList = empJoinList;
+    }
+
+    @XmlTransient
+    public List<EmpAction> getEmpActionList() {
+        return empActionList;
+    }
+
+    public void setEmpActionList(List<EmpAction> empActionList) {
+        this.empActionList = empActionList;
+    }
+
+    @XmlTransient
+    public List<EmpBundleAnswer> getEmpBundleAnswerList() {
+        return empBundleAnswerList;
+    }
+
+    public void setEmpBundleAnswerList(List<EmpBundleAnswer> empBundleAnswerList) {
+        this.empBundleAnswerList = empBundleAnswerList;
+    }
+
+    @XmlTransient
+    public List<Theory> getTheoryList() {
+        return theoryList;
+    }
+
+    public void setTheoryList(List<Theory> theoryList) {
+        this.theoryList = theoryList;
     }
 
     @Override

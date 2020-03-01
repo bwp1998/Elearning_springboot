@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author BWP
+ * @author iqbaloutlaw
  */
 @Entity
 @Table(name = "theory")
@@ -60,6 +60,9 @@ public class Theory implements Serializable {
     private String fileMatery;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "theory", fetch = FetchType.LAZY)
     private List<Quiz> quizList;
+    @JoinColumn(name = "creator", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee creator;
     @JoinColumn(name = "study_class", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private StudyClass studyClass;
@@ -76,7 +79,7 @@ public class Theory implements Serializable {
         this.theoryTitle = theoryTitle;
         this.theoryDefiniton = theoryDefiniton;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -116,6 +119,14 @@ public class Theory implements Serializable {
 
     public void setQuizList(List<Quiz> quizList) {
         this.quizList = quizList;
+    }
+
+    public Employee getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Employee creator) {
+        this.creator = creator;
     }
 
     public StudyClass getStudyClass() {

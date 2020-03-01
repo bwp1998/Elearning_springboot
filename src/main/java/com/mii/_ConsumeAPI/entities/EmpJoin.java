@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author BWP
+ * @author iqbaloutlaw
  */
 @Entity
 @Table(name = "emp_join")
@@ -40,6 +40,9 @@ public class EmpJoin implements Serializable {
     @JoinColumn(name = "batch_class", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private BatchClass batchClass;
+    @JoinColumn(name = "employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee employee;
 
     public EmpJoin() {
     }
@@ -62,6 +65,14 @@ public class EmpJoin implements Serializable {
 
     public void setBatchClass(BatchClass batchClass) {
         this.batchClass = batchClass;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
