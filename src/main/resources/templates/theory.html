@@ -60,12 +60,14 @@
                                 <h5>News updates</h5>
                             </div>
                             <div class="widget-content nopadding updates">
-                                <div class="new-update clearfix" th:each=" as : ${theories}">
-                                    <div class="update-done" >
-                                        <a th:href="'theory_detail?id='+${as.id}" title="">
-                                            <h4 th:text="${as.theoryTitle}"></h4>
-                                        </a>
-                                        <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
+                                <div class="table-responsive">
+                                    <div class="new-update clearfix" th:each=" as : ${theories}">
+                                        <div class="update-done" >
+                                            <a th:href="'theory_detail?id='+${as.id}" title="">
+                                                <h4 th:text="${as.theoryTitle}"></h4>
+                                            </a>
+                                            <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
