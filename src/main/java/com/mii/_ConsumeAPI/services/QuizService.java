@@ -44,6 +44,7 @@ public class QuizService {
     
     public List<Quiz> getByTheory(String id){
         return quizRepository.getByTheory(Integer.parseInt(id));
+        //s
     } 
     
 }
