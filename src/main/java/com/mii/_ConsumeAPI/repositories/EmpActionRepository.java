@@ -20,9 +20,11 @@ import org.springframework.stereotype.Repository;
 public interface EmpActionRepository extends CrudRepository<EmpAction, Integer>{
     @Query(value="select * from emp_action where forum = ?1 and action= 'Reply'", nativeQuery = true)
     public List<EmpAction> getByForum(Integer id);
+//    @Query(value="select * from emp_action where forum = ?1 and action= 'Create'", nativeQuery = true)
+//    public List<EmpAction> getByCreateF(Integer id);
     
-    @Query(value="select * from emp_action where forum = ?1 ", nativeQuery = true)
-    public List<EmpAction> getByEmployee(Integer id);
+//    @Query(value="select * from emp_action where forum = ?1 ", nativeQuery = true)
+//    public List<EmpAction> getByEmployee(Integer id);
     
     
     
