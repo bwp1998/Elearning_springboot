@@ -80,6 +80,25 @@ public class Theory implements Serializable {
         this.theoryDefiniton = theoryDefiniton;
     }
 
+    public Theory(Integer id, String theoryTitle, String theoryDefiniton, String fileMatery, Employee creator, StudyClass studyClass) {
+        this.id = id;
+        this.theoryTitle = theoryTitle;
+        this.theoryDefiniton = theoryDefiniton;
+        this.fileMatery = fileMatery;
+        this.creator = creator;
+        this.studyClass = studyClass;
+    }
+
+    
+    
+    public Theory(String theoryTitle, String theoryDefiniton, String fileMatery, Employee creator, StudyClass studyClass) {
+        this.theoryTitle = theoryTitle;
+        this.theoryDefiniton = theoryDefiniton;
+        this.fileMatery = fileMatery;
+        this.creator = creator;
+        this.studyClass = studyClass;
+    }
+
     public Integer getId() {
         return id;
     }
