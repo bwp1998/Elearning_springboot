@@ -56,6 +56,9 @@
                 <h1>
                     <strong th:text="${forum.topic}"></strong>
                 </h1>
+                <h5 th:each=" as : ${empname}">
+                <strong th:text="CreatedBy +' '+ ${as.employee.name}"></strong>
+                </h5>
             </div>
             <div class="container-fluid">
                 <div class="row-fluid">
@@ -71,7 +74,8 @@
                         <div class="widget-box" th:each=" as : ${empa}">
                             <div class="widget-title"> <span class="icon"><i class="icon-time"></i></span>
                                 <!--<div th:each="us : ${employees}">-->
-                                    <h5 th:text="Comment +' '+${empa.employee}">Comment</h5>
+                                    <h5 th:text="${as.employee.name} + ' '+ Comment"></h5>
+                                    <!--<h5 >Comment</h5>-->
                                 <!--</div>-->
                             </div>
                             <div class="widget-content" th:text="${as.actionComment}">

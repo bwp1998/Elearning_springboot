@@ -37,11 +37,12 @@ public class EmpActionService {
         empactionRepository.delete(new EmpAction(id));
     }
     
-    public List<EmpAction> getByForum(String id){
-        return empactionRepository.getByForum(Integer.parseInt(id));
+    public List<EmpAction> getByReplyF(String id){
+        return empactionRepository.getByReplyF(Integer.parseInt(id));
     }
     
-    public List<EmpAction> getByEmployee(String id){
-        return empactionRepository.getByEmployee(Integer.parseInt(id));
+    
+    public List<EmpAction> getByCreateF(String id){
+        return empactionRepository.getByCreateF(Integer.parseInt(id));
     }
 }

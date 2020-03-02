@@ -90,6 +90,17 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
+    public Employee(String id, String name, String email, Integer isActive, Date hireDate) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.isActive = isActive;
+        
+        this.hireDate = hireDate;
+    }
+    
+    
+
     public String getId() {
         return id;
     }
