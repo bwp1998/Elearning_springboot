@@ -76,7 +76,6 @@ public class LoginController {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 Date date;
                 try {
-                    
                     date = simpleDateFormat.parse(employeeLogin.getEmployee().getBirthDate());
                     Employee employee = new Employee(employeeLogin.getEmployee().getId(), 
                             employeeLogin.getEmployee().getFirstName() + " " + employeeLogin.getEmployee().getLastName(), 

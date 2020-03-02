@@ -58,6 +58,7 @@ public class ForumController {
 //        System.out.println("IDNYA WEI "+model.getAttribute("theory"));
 //        return "theory_detail";
 
+
         model.addAttribute("empname", empaService.getByCreateF(request.getParameter("id")));
 //        model.addAttribute("employee", empService.getById("empname.employee.id"));
         System.out.println("isi emp = " + model.getAttribute("empname"));

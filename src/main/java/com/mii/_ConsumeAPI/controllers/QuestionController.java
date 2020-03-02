@@ -25,10 +25,7 @@ public class QuestionController {
     
     @RequestMapping("/answer")
     public String question(Model model, HttpServletRequest request){
-        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
-        System.out.println("nama33 = " + model.getAttribute("nama"));
-        
-        
+        model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
         model.addAttribute("questions", service.getAll());
         return "answer";
     }
