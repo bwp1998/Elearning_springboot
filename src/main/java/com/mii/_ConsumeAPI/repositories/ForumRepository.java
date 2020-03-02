@@ -6,6 +6,7 @@
 package com.mii._ConsumeAPI.repositories;
 
 import com.mii._ConsumeAPI.entities.Forum;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ForumRepository extends CrudRepository<Forum, Integer>{
-    
+    @Query(value = "SELECT * FROM Forum WHERE id = ?1", nativeQuery = true)
+    public Forum getById(Integer id);
 }
