@@ -43,6 +43,14 @@ public class ForumController {
         model.addAttribute("forums", fservice.getAll());
         return "forum";
     }
+    
+    @RequestMapping("/forum_input")
+    public String forum_input(Model model, HttpServletRequest request) {
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
+        System.out.println("NAMA 44FORUM= " + model.getAttribute("nama"));
+//        model.addAttribute("forums", fservice.getAll());
+        return "forum_input";
+    }
 
     @RequestMapping("/forum_detail")
     public String forumDetail(Model model, HttpServletRequest request) {

@@ -55,8 +55,8 @@
                     </a>
                 </div>
             </div>
-
-            <div style="padding-left:20px; padding-top: 10px">
+            <!--<a th:text="${rolenya}"></a>-->
+            <div style="padding-left:20px; padding-top: 10px" th:if="${rolenya[0] == 'Trainer'}">
                 <!-- Button trigger modal -->
                 <a class="btn btn-primary" th:href="@{/theory_input}" role="button">Insert Theory</a>
             </div>

@@ -77,12 +77,14 @@ public class LoginController {
                 Date date;
                 try {
                     date = simpleDateFormat.parse(employeeLogin.getEmployee().getBirthDate());
-                    Employee employee = new Employee(employeeLogin.getEmployee().getId(), 
-                            employeeLogin.getEmployee().getFirstName() + " " + employeeLogin.getEmployee().getLastName(), 
+                    Employee employee = new Employee(employeeLogin.getEmployee().getId(),
+                            employeeLogin.getEmployee().getFirstName() + " " + employeeLogin.getEmployee().getLastName(),
                             employeeLogin.getEmployee().getEmail(), 1, date);
                     rest.save(employee); //send ke database local
                     request.getSession().setAttribute("employee", employeeLogin.getEmployee().getFirstName());
                     System.out.println("NAMANYA = " + request.getSession().getAttribute("employee"));
+                    request.getSession().setAttribute("role", employeeLogin.getEmployee().getRoles());
+                    System.out.println("Role = " + request.getSession().getAttribute("role"));
 
                 } catch (ParseException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

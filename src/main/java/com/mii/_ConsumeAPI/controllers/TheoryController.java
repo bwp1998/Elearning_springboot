@@ -34,6 +34,7 @@ public class TheoryController {
     @RequestMapping("/theory")
     public String theory(Model model, HttpServletRequest request){
         model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
         model.addAttribute("theories", theoryservice.getAll());
         return "theory";
     }
