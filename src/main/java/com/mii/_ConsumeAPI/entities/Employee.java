@@ -94,8 +94,7 @@ public class Employee implements Serializable {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.isActive = isActive;
-        
+        this.isActive = isActive;        
         this.hireDate = hireDate;
     }
     
