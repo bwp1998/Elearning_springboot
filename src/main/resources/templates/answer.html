@@ -205,6 +205,15 @@
 <!--end-main-container-part-->
 
 <!--Footer-part-->
+<script th:inline="javascript" th:each>
+
+      /*<![CDATA[*/
+	    
+         var user = /*[[${session.userName}]]*/ 'User Name';
+
+       /*]]>*/
+</script> 
+
 <script>
     var currentTab = 0; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
