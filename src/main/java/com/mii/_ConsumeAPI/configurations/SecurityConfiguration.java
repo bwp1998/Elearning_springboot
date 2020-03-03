@@ -51,6 +51,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/home/**").authenticated()
                 .antMatchers("/theory/**").authenticated()
                 .antMatchers("/theory_detail/**").authenticated()
+                .antMatchers("/forum/**").authenticated()
+                .antMatchers("/forum_detail/**").authenticated()
+                .antMatchers("/history_quiz/**").authenticated()
                 
                 .antMatchers("/theory_input/**").hasAnyAuthority("Trainer")
                 

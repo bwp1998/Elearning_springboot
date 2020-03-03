@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>E-Learning</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{css/bootstrap-responsive.min.css}" />
+        <link rel="stylesheet" th:href="@{css/fullcalendar.css}" />
+        <link rel="stylesheet" th:href="@{css/matrix-style.css}" />
+        <link rel="stylesheet" th:href="@{css/matrix-media.css}" />
+        <link th:href="@{font-awesome/css/font-awesome.css}" rel="stylesheet" />
+        <link rel="stylesheet" href="@{css/jquery.gritter.css}" />
+        <link rel="shortcut icon" th:href="@{images/mii_hd_icon.ico}">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!--Header-part-->
+        <div id="header">
+            <h1></h1>
+        </div>
+        <!--close-Header-part--> 
+
+        <!--top-Header-menu-->
+        <div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav">
+                <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text" th:text="${nama}"></span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a th:href="logout"><i class="icon-key"></i> Log Out</a></li>
+                    </ul>
+                </li>
+                <li class=""><a title="" th:href="logout"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+            </ul>
+        </div>
+        <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+            <ul>
+                <li><a th:href="@{/}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+                <li> <a th:href="theory"><i class="icon icon-tasks"></i> <span>Theory</span></a> </li>
+                <li><a th:href="forum"><i class="icon icon-comments"></i> <span>Forum</span></a></li>
+                <li class="active"><a th:href="@{/history_quiz}"><i class="icon icon-book"></i> <span>History Quiz</span></a></li>
+        </div>
+        <!--sidebar-menu-->
+
+        <!--main-container-part-->
+        <div id="content">
+            <div id="content-header">
+                <div id="breadcrumb">
+                    <a th:href="@{/history_quiz}" title="Go to Forum" class="tip-bottom"><i class="icon-tasks"></i> History Quiz
+                    </a>
+                    <!--                    <a th:href="@{forum_detail}" title="Go to Forum Detail" class="tip-bottom"><i class="icon-tasks"></i> Forum Detail
+                                        </a>-->
+                </div>
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="widget-box" >
+                                <div class="widget-title"> <span class="icon"> <i class="icon-list"></i> </span>
+                                    <h5></h5>
+                                </div>
+                                <div class="widget-content"> 
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--end-main-container-part-->
+
+        <!--Footer-part-->
+        <div th:replace="fragments/footer::footer"></div>
+    </body>
+</html>

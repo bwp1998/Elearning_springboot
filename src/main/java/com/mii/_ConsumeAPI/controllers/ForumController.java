@@ -47,7 +47,7 @@ public class ForumController {
     @RequestMapping("/forum_detail")
     public String forumDetail(Model model, HttpServletRequest request) {
 
-        model.addAttribute("namaa", "Hallo " + request.getSession().getAttribute("employee"));
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         System.out.println("nama33 = " + model.getAttribute("namaa"));
 
         System.out.println("IDNYA=" + request.getParameter("id"));
@@ -64,35 +64,37 @@ public class ForumController {
 //        System.out.println("IDNYA WEI "+model.getAttribute("theory"));
 //        return "theory_detail";
 
-
         model.addAttribute("empname", empaService.getByCreateF(request.getParameter("id")));
 //        model.addAttribute("employee", empService.getById("empname.employee.id"));
         System.out.println("isi emp = " + model.getAttribute("empname"));
         return "forum_detail";
-    };
+    }
+
+    ;
     
     @RequestMapping("/inputforum")
     public String inputForum(Model model, HttpServletRequest request) {
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         return "inputforum";
     }
-    
+
     @PostMapping("/forum_detail/save")
-    public String save(HttpServletRequest request){
+    public String save(HttpServletRequest request) {
         String topic = request.getParameter("topic");
         String description = request.getParameter("description");
         String pattern = "yyyy-mm-dd";
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-                Date date = new Date();
-                
-        Forum f = new Forum(0,topic, description, date);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date date = new Date();
+
+        Forum f = new Forum(0, topic, description, date);
         fservice.save(f);
-        System.out.println(topic +description + date);
-        
+        System.out.println(topic + description + date);
+
 //        EmpAction ea = new EmpAction(0,"create",date,"","",)
 //        empaService.save(ea);
         return "redirect:/forum";
     }
-    
+
 //    @PostMapping("deleteforum")
 //    public String delete(@Valid Forum forummm){
 //        
