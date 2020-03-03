@@ -54,7 +54,10 @@
             </div>
 
             <div class="container-fluid">
-                <a th:href="inputforum"><button type="button" class="btn btn-primary">Primary</button></a>
+                <div style="padding-left:10px; padding-top: 10px">
+                    <!-- Button trigger modal -->
+                    <a th:href="inputforum"><button type="button" class="btn btn-primary">Insert Forum</button></a>
+                </div>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="widget-box">
@@ -66,7 +69,7 @@
                                     <div class="update-done" >
                                         <a th:href="'forum_detail?id='+${as.id}" title="">
                                             <h4 th:text="${as.topic}"></h4>
-                                            
+
                                         </a>
                                         <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
                                     </div>

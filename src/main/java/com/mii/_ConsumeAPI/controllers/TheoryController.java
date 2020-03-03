@@ -6,7 +6,6 @@
 package com.mii._ConsumeAPI.controllers;
 
 import com.mii._ConsumeAPI.entities.Employee;
-import com.mii._ConsumeAPI.entities.Quiz;
 import com.mii._ConsumeAPI.entities.StudyClass;
 import com.mii._ConsumeAPI.entities.Theory;
 import com.mii._ConsumeAPI.services.QuizService;
@@ -57,6 +56,7 @@ public class TheoryController {
     public String theory_input(Model model, HttpServletRequest request){
         model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
         model.addAttribute("theories", theoryservice.getAll());
+        
         return "theory_input";
     }
     
