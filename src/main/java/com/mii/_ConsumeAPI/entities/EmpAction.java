@@ -83,6 +83,18 @@ public class EmpAction implements Serializable {
         this.rate = rate;
     }
 
+    public EmpAction(Integer id, String action, Date actionDate, String actionComment, int rate, Employee employee, Forum forum) {
+        this.id = id;
+        this.action = action;
+        this.actionDate = actionDate;
+        this.actionComment = actionComment;
+        this.rate = rate;
+        this.employee = employee;
+        this.forum = forum;
+    }
+    
+    
+
     public Integer getId() {
         return id;
     }

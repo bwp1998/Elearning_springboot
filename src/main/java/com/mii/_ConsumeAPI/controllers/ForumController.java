@@ -6,6 +6,7 @@
 package com.mii._ConsumeAPI.controllers;
 
 import com.mii._ConsumeAPI.entities.EmpAction;
+import com.mii._ConsumeAPI.entities.Employee;
 import com.mii._ConsumeAPI.entities.Forum;
 import com.mii._ConsumeAPI.services.EmpActionService;
 import com.mii._ConsumeAPI.services.EmployeeService;
@@ -48,7 +49,8 @@ public class ForumController {
     public String forumDetail(Model model, HttpServletRequest request) {
 
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
-        System.out.println("nama33 = " + model.getAttribute("namaa"));
+        model.addAttribute("namam", request.getSession().getAttribute("employee"));
+        System.out.println("nama33 = " + model.getAttribute("nama"));
 
         System.out.println("IDNYA=" + request.getParameter("id"));
         model.addAttribute("forum", fservice.getById(request.getParameter("id")));
@@ -92,6 +94,24 @@ public class ForumController {
 
 //        EmpAction ea = new EmpAction(0,"create",date,"","",)
 //        empaService.save(ea);
+        return "redirect:/forum";
+    }
+    
+    @PostMapping("/forum_detail/reply")
+    public String reply(HttpServletRequest request) {
+        String comment = request.getParameter("reply");
+        
+        
+        String pattern = "yyyy-mm-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date date = new Date();
+
+//        Emp f = new Forum(0, topic, description, date);
+//        empaService.save(f);
+//        System.out.println(topic + description + date);
+
+        EmpAction ea = new EmpAction(0,"reply",date,comment,2,new Employee(request.getSession().getAttribute("employeeid").toString()),new Forum(1));
+        empaService.save(ea);
         return "redirect:/forum";
     }
 

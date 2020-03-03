@@ -82,6 +82,8 @@ public class LoginController {
                             employeeLogin.getEmployee().getEmail(), 1, date);
                     rest.save(employee); //send ke database local
                     request.getSession().setAttribute("employee", employeeLogin.getEmployee().getFirstName());
+                    request.getSession().setAttribute("employeeid", employeeLogin.getEmployee().getId());
+                    System.out.println("IDNYA = " + request.getSession().getAttribute("employeeid"));
                     System.out.println("NAMANYA = " + request.getSession().getAttribute("employee"));
                     request.getSession().setAttribute("role", employeeLogin.getEmployee().getRoles());
                     System.out.println("Role = " + request.getSession().getAttribute("role"));
