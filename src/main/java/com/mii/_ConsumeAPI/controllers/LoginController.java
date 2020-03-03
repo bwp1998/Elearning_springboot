@@ -9,6 +9,7 @@ import com.mii._ConsumeAPI.entities.Employee;
 import com.mii._ConsumeAPI.entities.EmployeeLogin;
 import com.mii._ConsumeAPI.entities.LoginData;
 import com.mii._ConsumeAPI.services.LoginRest;
+import com.mii._ConsumeAPI.services.SendMailServices;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -41,6 +42,9 @@ public class LoginController {
 
     @Autowired
     private LoginRest rest;
+    
+    @Autowired
+    private SendMailServices sendMailServices;
 
     @GetMapping("/login")
     public String handlingLog() {
@@ -66,7 +70,7 @@ public class LoginController {
             //diberi akses 
             PreAuthenticatedAuthenticationToken authentication = new PreAuthenticatedAuthenticationToken(user, "", user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
+            
 //            System.out.println("NAMANYA = "+ employeeLogin.getEmployee().getFirstName()); // coba
 //            System.out.println("id=" + employeeLogin.getEmployee().getId());
 //            System.out.println("nama=" + employeeLogin.getEmployee().getLastName());
@@ -87,7 +91,7 @@ public class LoginController {
                     System.out.println("NAMANYA = " + request.getSession().getAttribute("employee"));
                     request.getSession().setAttribute("role", employeeLogin.getEmployee().getRoles());
                     System.out.println("Role = " + request.getSession().getAttribute("role"));
-
+                    sendMailServices.sendHistory();
                 } catch (ParseException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
