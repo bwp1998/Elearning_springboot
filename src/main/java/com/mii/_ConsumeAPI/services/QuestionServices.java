@@ -43,8 +43,8 @@ public class QuestionServices {
         return questionRepository.findById(id).get();
     }
 
-    public Question save(Question employee) {
-        return questionRepository.save(employee);
+    public Question save(Question question) {
+        return questionRepository.save(question);
     }
 
     public void delete(String id) {
