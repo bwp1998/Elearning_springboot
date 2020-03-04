@@ -20,6 +20,7 @@ public class HistoryController {
     public String forum(Model model, HttpServletRequest request) {
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         System.out.println("NAMA 44FORUM= " + model.getAttribute("nama"));
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
         return "history_quiz";
     }
 }

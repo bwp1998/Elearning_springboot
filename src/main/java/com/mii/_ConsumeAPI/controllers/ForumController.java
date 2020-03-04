@@ -14,12 +14,15 @@ import com.mii._ConsumeAPI.services.ForumService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -41,7 +44,12 @@ public class ForumController {
     public String forum(Model model, HttpServletRequest request) {
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         System.out.println("NAMA 44FORUM= " + model.getAttribute("nama"));
-        model.addAttribute("forums", fservice.getAll());
+        if (request.getParameter("searchnya") == null) {
+            model.addAttribute("forums", fservice.searchForum("%" + " " + "%"));
+        } else {
+            model.addAttribute("forums", fservice.searchForum("%" + request.getParameter("searchnya") + "%"));
+        }
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
         return "forum";
     }
 
@@ -72,11 +80,11 @@ public class ForumController {
         return "forum_detail";
     }
 
-    ;
-    
     @RequestMapping("/inputforum")
     public String inputForum(Model model, HttpServletRequest request) {
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
+
         return "inputforum";
     }
 
@@ -96,12 +104,13 @@ public class ForumController {
 //        empaService.save(ea);
         return "redirect:/forum";
     }
-    
-    @PostMapping("/forum_detail/reply")
-    public String reply(HttpServletRequest request) {
+
+//    @PostMapping("/forum_detail/reply")
+    @RequestMapping(value = "/forum_detail/reply", method = RequestMethod.POST)
+    @ResponseBody
+    public String reply(HttpServletRequest request, @RequestParam(required = false) String id) {
         String comment = request.getParameter("reply");
-        
-        
+
         String pattern = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         Date date = new Date();
@@ -109,17 +118,22 @@ public class ForumController {
 //        Emp f = new Forum(0, topic, description, date);
 //        empaService.save(f);
 //        System.out.println(topic + description + date);
-
-        EmpAction ea = new EmpAction(0,"reply",date,comment,2,new Employee(request.getSession().getAttribute("employeeid").toString()),new Forum(1));
+        System.out.println("id forum"+id);
+        EmpAction ea = new EmpAction(0, "reply", date, comment, 2, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(1));
         empaService.save(ea);
         return "redirect:/forum";
     }
 
-//    @PostMapping("deleteforum")
-//    public String delete(@Valid Forum forummm){
-//        
-//        fservice.delete(forummm);
-//        return "redirect:/forum";
-//        
-//    }
+    @GetMapping("/searchnya")
+    public String searchnya(Model model, HttpServletRequest request) {
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
+        System.out.println("NAMA 44FORUM= " + model.getAttribute("nama"));
+        if (request.getParameter("searchnya") == null) {
+            model.addAttribute("forums", fservice.searchForum("%" + " " + "%"));
+        } else {
+            model.addAttribute("forums", fservice.searchForum("%" + request.getParameter("searchnya") + "%"));
+        }
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
+        return "forum";
+    }
 }

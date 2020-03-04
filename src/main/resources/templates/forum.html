@@ -22,26 +22,10 @@
         <!--close-Header-part--> 
 
         <!--top-Header-menu-->
-        <div id="user-nav" class="navbar navbar-inverse">
+        <div th:replace="fragments/header::header"></div>
+        <!--sidebar-menu-->
+        <div th:replace="fragments/sidebar::sidebar"></div>
 
-            <ul class="nav">
-                <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text" th:text="${nama}"></span><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a th:href="logout"><i class="icon-key"></i> Log Out</a></li>
-                    </ul>
-                </li>
-                <li class=""><a title="" th:href="logout"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
-            </ul>
-        </div>
-        <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
-            <ul>
-                <li><a th:href="@{/}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-                <li> <a th:href="theory"><i class="icon icon-tasks"></i> <span>Theory</span></a> </li>
-                <li class="active"><a href="forum"><i class="icon icon-comments"></i> <span>Forum</span></a></li>
-                <li><a href="history_quiz"><i class="icon icon-book"></i> <span>History Quiz</span></a></li>
-        </div>
         <!--sidebar-menu-->
 
         <!--main-container-part-->
@@ -62,14 +46,19 @@
                     <div class="span12">
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-refresh"></i> </span>
-                                <h5>Recent Updates</h5>
+                                <h5>Recent Updates</h5> 
+                                <form th:action="@{/searchnya}" method="get">
+                                    <div style="float:right ;margin: 2px; align-content: center">
+                                        <input type="text" name="searchnya" placeholder="Search..">
+                                        <button type="submit"><i class="icon-search"></i></button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="widget-content nopadding updates">
                                 <div class="new-update clearfix" th:each=" as : ${forums}">
                                     <div class="update-done" >
                                         <a th:href="'forum_detail?id='+${as.id}" title="">
                                             <h4 th:text="${as.topic}"></h4>
-
                                         </a>
                                         <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
                                     </div>
@@ -80,10 +69,9 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!--end-main-container-part-->
+        <!--end-main-container-part-->
 
-    <!--Footer-part-->
-    <div th:replace="fragments/footer::footer"></div>
-</body>
+        <!--Footer-part-->
+        <div th:replace="fragments/footer::footer"></div>
+    </body>
 </html>

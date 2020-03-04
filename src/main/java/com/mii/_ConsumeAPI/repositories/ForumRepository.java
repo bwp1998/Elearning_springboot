@@ -18,4 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface ForumRepository extends CrudRepository<Forum, Integer>{
     @Query(value = "SELECT * FROM Forum WHERE id = ?1", nativeQuery = true)
     public Forum getById(Integer id);
+    
+    @Query(value = "SELECT * FROM Forum WHERE id LIKE ?1 OR topic LIKE ?1 OR forum_description LIKE ?1 OR date_forum LIKE ?1", nativeQuery = true)
+    public Iterable<Forum> searchForum(String key);
 }

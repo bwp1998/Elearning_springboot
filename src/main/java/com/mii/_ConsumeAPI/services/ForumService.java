@@ -49,12 +49,7 @@ public class ForumService {
       forumRepository.delete(new Forum(Integer.parseInt(id)));
   }
   
-//  private HttpHeaders getHeaders() {
-//        return new HttpHeaders() {
-//            {
-//                set("Authorization", key);
-//                setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-//            }
-//        };
-//    }
+  public Iterable<Forum> searchForum(String key){
+     return forumRepository.searchForum(key);
+  }
 }

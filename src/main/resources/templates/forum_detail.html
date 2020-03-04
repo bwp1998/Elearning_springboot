@@ -96,33 +96,28 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
 
-                                
-
-                                </div>
-                            
                             <div class="widget-box" >
-                                    <div class="widget-title"> <span class="icon"><i class="icon-time"></i></span>
-                                        <!--<div th:each="us : ${employees}">-->
-                                        <h5> Reply</h5>
-                                        <!--<h5 >Comment</h5>-->
-                                        <!--</div>-->
-                                    </div>
-                                    <div class="widget-content" >
-                                        <form th:action="@{/forum_detail/reply}" method="POST">
-                                            <div class="form-group">
-                                                <label >Reply as : <span class="text" th:text="${namam}"></span></label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label >Your Reply</label>
-                                                <textarea class="form-control" rows="3" name="reply"></textarea>
-                                            </div>
+                                <div class="widget-title"> <span class="icon"><i class="icon-time"></i></span>
+                                    <!--<div th:each="us : ${employees}">-->
+                                    <h5> Reply</h5>
+                                    <!--<h5 >Comment</h5>-->
+                                    <!--</div>-->
+                                </div>
+                                <div class="widget-content" >
+                                    <form th:action="@{/forum_detail}" method="POST">
+                                        <div class="form-group">
+                                            <label >Reply as : <span class="text" th:text="${namam}"></span></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Your Reply</label>
+                                            <textarea class="form-control" rows="3" name="reply"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Post Your Reply</button>
+                                    </form>
+                                </div>
 
-                                            
-                                            <button type="submit" class="btn btn-primary">Post Your Reply</button>
-                                        </form>
-                                    </div>
-                            
                             </div>
                         </div>
                     </div>
@@ -130,9 +125,10 @@
 
 
             </div>
-            <!--end-main-container-part-->
+        </div>
+        <!--end-main-container-part-->
 
-            <!--Footer-part-->
-            <div th:replace="fragments/footer::footer"></div>
+        <!--Footer-part-->
+        <div th:replace="fragments/footer::footer"></div>
     </body>
 </html>

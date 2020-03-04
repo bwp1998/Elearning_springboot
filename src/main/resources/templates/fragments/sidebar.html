@@ -1,45 +1,23 @@
 <div th:fragment="sidebar">
-    
-<nav id="sidebar">
-            <div class="sidebar-header">
-               <img src="img/mii_hd_icon.ico" width="200" height="200" class="d-inline-block align-top" alt="">
-               <span  class="navbar-brand mb-0 h1" >E-Learning Bootcamp</span>
-            </div>
 
-            <ul class="list-unstyled components">
-                
+    <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+        <ul>
+            <li><a th:href="@{/}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+            <li class="submenu"> 
+                <a href="#" th:if="${rolenya[0]} == 'Trainer'">
+                    <i class="icon icon-th-list"></i> 
+                    <span>Theory</span> 
+                    <span class="label label-important">2</span>
+                </a>
+            <li th:if="${rolenya[0]} == 'Employee'"><a th:href="@{/theory}"><i class="icon icon-th-list"></i> <span>Theory</span></a> </li>
+            <ul th:if="${rolenya[0]} == 'Trainer'">
+                <li><a href="theory">Lihat Theory</a></li>
                 <li >
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Theory</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="theory">Java</a>
-                            <a href="#">.Net</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
+                    <a href="theory_input">Masukkan Theory</a>
                 </li>
             </ul>
-
-            
-        </nav>
+            </li>
+            <li><a href="forum"><i class="icon icon-comments"></i> <span>Forum</span></a></li>
+            <li><a href="history_quiz"><i class="icon icon-book"></i> <span>History Quiz</span></a></li>
+    </div>
 </div>

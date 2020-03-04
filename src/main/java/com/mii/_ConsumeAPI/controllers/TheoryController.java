@@ -57,6 +57,7 @@ public class TheoryController {
     public String theory_input(Model model, HttpServletRequest request) {
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         model.addAttribute("theories", theoryservice.getAll());
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
 
         return "theory_input";
     }
