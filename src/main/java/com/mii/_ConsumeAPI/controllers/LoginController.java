@@ -91,7 +91,8 @@ public class LoginController {
                     System.out.println("NAMANYA = " + request.getSession().getAttribute("employee"));
                     request.getSession().setAttribute("role", employeeLogin.getEmployee().getRoles());
                     System.out.println("Role = " + request.getSession().getAttribute("role"));
-                    sendMailServices.sendHistory();
+//                    SEND EMAIL
+//                    sendMailServices.sendHistory(); 
                 } catch (ParseException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
