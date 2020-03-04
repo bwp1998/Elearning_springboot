@@ -21,8 +21,9 @@ public class MainController {
     public String home(Model model, HttpServletRequest request) {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        model.addAttribute("user", auth.getName());
-        model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
-        System.out.println("NAMANYA 2="+ model.getAttribute("nama"));
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
+        System.out.println("NAMANYA 2=" + model.getAttribute("nama"));
         return "index";
     }
 
