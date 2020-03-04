@@ -11,6 +11,7 @@ import com.mii._ConsumeAPI.entities.Forum;
 import com.mii._ConsumeAPI.services.EmpActionService;
 import com.mii._ConsumeAPI.services.EmployeeService;
 import com.mii._ConsumeAPI.services.ForumService;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
@@ -53,8 +54,9 @@ public class ForumController {
         return "forum";
     }
 
-    @RequestMapping("/forum_detail")
-    public String forumDetail(Model model, HttpServletRequest request) {
+   @GetMapping("/forum_detail")
+//    @ResponseBody
+    public String forumDetail(@RequestParam String id, Model model, HttpServletRequest request) {
 
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         model.addAttribute("namam", request.getSession().getAttribute("employee"));
@@ -77,39 +79,71 @@ public class ForumController {
         model.addAttribute("empname", empaService.getByCreateF(request.getParameter("id")));
 //        model.addAttribute("employee", empService.getById("empname.employee.id"));
         System.out.println("isi emp = " + model.getAttribute("empname"));
+        System.out.println("id = "+id);
+        model.addAttribute("idforum", id);
         return "forum_detail";
-    }
-
+    };
+    
+//    @GetMapping("/forum_detail")
+//    @ResponseBody
+//    public String getforumDetail(@RequestParam String id, Model model, HttpServletRequest request) {
+//
+////        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
+////        model.addAttribute("namam", request.getSession().getAttribute("employee"));
+////        System.out.println("nama33 = " + model.getAttribute("nama"));
+////
+////        System.out.println("IDNYA=" + request.getParameter("id"));
+////        model.addAttribute("forum", fservice.getById(request.getParameter("id")));
+////        System.out.println("forum = " + model.getAttribute("forum"));
+////        model.addAttribute("quizs",quizService.getAll());
+//
+////        model.addAttribute("empa", empaService.getByReplyF(request.getParameter("id")));
+////        System.out.println("empa = " + model.getAttribute("empa"));
+////        model.addAttribute("employees",empService.getByEmployee(request.getParameter("id")));
+////        System.out.println("employee = "+model.getAttribute("employees"));
+////        System.out.println("QUIZ = "+ request.getAttribute("quizs"));
+////        System.out.println("IDNYA WEI "+request.getParameter("id"));
+////        System.out.println("IDNYA WEI "+model.getAttribute("theory"));
+////        return "theory_detail";
+//
+////        model.addAttribute("empname", empaService.getByCreateF(request.getParameter("id")));
+////        model.addAttribute("employee", empService.getById("empname.employee.id"));
+////        System.out.println("isi emp = " + model.getAttribute("empname"));
+//            System.out.println("id = "+id);
+//          return "forum_detail?id="+id;
+//    }
+    
     @RequestMapping("/inputforum")
     public String inputForum(Model model, HttpServletRequest request) {
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
-        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
-
         return "inputforum";
     }
 
     @PostMapping("/forum_detail/save")
-    public String save(HttpServletRequest request) {
+    public String save(Model model, HttpServletRequest request) {
         String topic = request.getParameter("topic");
         String description = request.getParameter("description");
+//        String employee = request.getParameter("employee");
+//        String forum = request.getParameter("forum");
         String pattern = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
         Date date = new Date();
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
 
-        Forum f = new Forum(0, topic, description, date);
+        Forum f = new Forum(0, topic, description, ts);
         fservice.save(f);
-        System.out.println(topic + description + date);
-
-//        EmpAction ea = new EmpAction(0,"create",date,"","",)
-//        empaService.save(ea);
+        System.out.println(topic + description + ts.toString());
+        int a = (int) request.getSession().getAttribute("forum");
+        EmpAction ea = new EmpAction(0,"create",ts,"",0, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(a));
+        empaService.save(ea);
         return "redirect:/forum";
     }
 
-//    @PostMapping("/forum_detail/reply")
-    @RequestMapping(value = "/forum_detail/reply", method = RequestMethod.POST)
-    @ResponseBody
-    public String reply(HttpServletRequest request, @RequestParam(required = false) String id) {
+    @PostMapping("/forum_detail/reply")
+    public String reply(HttpServletRequest request) {
         String comment = request.getParameter("reply");
+        String idforum = request.getParameter("idforum");
 
         String pattern = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -118,10 +152,9 @@ public class ForumController {
 //        Emp f = new Forum(0, topic, description, date);
 //        empaService.save(f);
 //        System.out.println(topic + description + date);
-        System.out.println("id forum"+id);
-        EmpAction ea = new EmpAction(0, "reply", date, comment, 2, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(1));
+        EmpAction ea = new EmpAction(0, "reply", date, comment, 2, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(Integer.parseInt(idforum)));
         empaService.save(ea);
-        return "redirect:/forum";
+        return "redirect:/forum_detail?id="+idforum;
     }
 
     @GetMapping("/searchnya")
