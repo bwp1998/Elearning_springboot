@@ -23,52 +23,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class TheoryController {
-    
+
     @Autowired
     TheoryService theoryservice;
-    
+
     @Autowired
     QuizService quizService;
-    
+
     @RequestMapping("/theory")
-    public String theory(Model model, HttpServletRequest request){
-        model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
+    public String theory(Model model, HttpServletRequest request) {
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         model.addAttribute("rolenya", request.getSession().getAttribute("role"));
         model.addAttribute("theories", theoryservice.getAll());
         return "theory";
     }
-    
+
     @RequestMapping("/theory_detail")
-    public String theoryDetail(Model model, HttpServletRequest request){
-        
-        model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
+    public String theoryDetail(Model model, HttpServletRequest request) {
+
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
         model.addAttribute("theory", theoryservice.getById(request.getParameter("id")));
 //        model.addAttribute("quizs",quizService.getAll());
-        model.addAttribute("quizs",quizService.getByTheory(request.getParameter("id")));
+        model.addAttribute("quizs", quizService.getByTheory(request.getParameter("id")));
 //        System.out.println(quizService.getByTheory(1));
-        System.out.println("QUIZ = "+ request.getAttribute("quizs"));
-        System.out.println("IDNYA WEI "+request.getParameter("id"));
+        System.out.println("QUIZ = " + request.getAttribute("quizs"));
+        System.out.println("IDNYA WEI " + request.getParameter("id"));
 //        System.out.println("IDNYA WEI "+model.getAttribute("theory"));
         return "theory_detail";
     }
-    
+
     @RequestMapping("/theory_input")
-    public String theory_input(Model model, HttpServletRequest request){
-        model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
+    public String theory_input(Model model, HttpServletRequest request) {
+        model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         model.addAttribute("theories", theoryservice.getAll());
-        
+
         return "theory_input";
     }
-    
+
     @PostMapping("/theory_detail/save")
-    public String save(HttpServletRequest request){
+    public String save(HttpServletRequest request) {
         String title = request.getParameter("title");
         String definition = request.getParameter("definition");
         String upload = request.getParameter("upload");
         int kelas = Integer.parseInt(request.getParameter("kelas"));
-        Theory t = new Theory(0,title, definition, upload, new Employee("16154"), new StudyClass(kelas));
+        Theory t = new Theory(0, title, definition, upload, new Employee("16154"), new StudyClass(kelas));
         theoryservice.save(t);
-        System.out.println(title +definition + upload + kelas);
+        System.out.println(title + definition + upload + kelas);
         return "redirect:/theory";
     }
 }
