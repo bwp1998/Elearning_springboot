@@ -117,6 +117,7 @@ public class ForumController {
     
     @RequestMapping("/inputforum")
     public String inputForum(Model model, HttpServletRequest request) {
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         return "inputforum";
     }
