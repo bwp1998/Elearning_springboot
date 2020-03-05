@@ -8,6 +8,7 @@ package com.mii._ConsumeAPI.controllers;
 import com.mii._ConsumeAPI.entities.Employee;
 import com.mii._ConsumeAPI.entities.StudyClass;
 import com.mii._ConsumeAPI.entities.Theory;
+import com.mii._ConsumeAPI.services.QuestionServices;
 import com.mii._ConsumeAPI.services.QuizService;
 import com.mii._ConsumeAPI.services.TheoryService;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,8 @@ public class TheoryController {
 
     @Autowired
     QuizService quizService;
+    @Autowired
+    QuestionServices QuestionServices;
 
     @RequestMapping("/theory")
     public String theory(Model model, HttpServletRequest request) {
@@ -46,7 +49,10 @@ public class TheoryController {
         model.addAttribute("theory", theoryservice.getById(request.getParameter("id")));
 //        model.addAttribute("quizs",quizService.getAll());
         model.addAttribute("quizs", quizService.getByTheory(request.getParameter("id")));
+        
 //        System.out.println(quizService.getByTheory(1));
+//        System.out.println(QuestionServices.getByQuiz("KD-JSP&SERVLET-11102020"));
+        System.out.println("question = " + request.getAttribute("question"));
         System.out.println("QUIZ = " + request.getAttribute("quizs"));
         System.out.println("IDNYA WEI " + request.getParameter("id"));
 //        System.out.println("IDNYA WEI "+model.getAttribute("theory"));

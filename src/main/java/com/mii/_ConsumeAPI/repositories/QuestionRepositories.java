@@ -19,5 +19,8 @@ import org.springframework.stereotype.Repository;
 public interface QuestionRepositories extends CrudRepository<Question, String>{
 //    @Query(value="Select * from question where quiz = ?1", nativeQuery = true)
 //    public List<Question> getByQuiz(String id);
+    @Query(value="Select * from Question where quiz = ?1", nativeQuery = true)
+    public List<Question> getByQuiz(String id);
+    
 }
 

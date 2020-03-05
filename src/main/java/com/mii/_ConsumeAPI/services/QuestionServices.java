@@ -10,6 +10,7 @@ import com.mii._ConsumeAPI.entities.Question;
 import com.mii._ConsumeAPI.repositories.QuestionRepositories;
 
 import java.util.Collections;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -50,14 +51,9 @@ public class QuestionServices {
     public void delete(String id) {
         questionRepository.delete(new Question(Integer.parseInt(id)));
     }
-
-    private HttpHeaders getHeaders() {
-        return new HttpHeaders() {
-            {
-                set("Authorization", key);
-                setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-            }
-        };
-    }
+    
+     public List<Question> getByQuiz(String id){
+        return questionRepository.getByQuiz(id);
+    } 
 
 }

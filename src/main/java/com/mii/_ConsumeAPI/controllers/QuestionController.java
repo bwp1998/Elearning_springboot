@@ -33,7 +33,9 @@ public class QuestionController {
     @RequestMapping("/answer")
     public String question(Model model, HttpServletRequest request) {
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
-        model.addAttribute("questions", service.getAll());
+        model.addAttribute("questions", service.getByQuiz(request.getParameter("id")));
+        System.out.println(request.getParameter("id"));
+//        model.addAttribute("questions", service.getAll());
         return "answer";
     }
 
