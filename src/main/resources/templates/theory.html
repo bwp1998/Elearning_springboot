@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="@{css/jquery.gritter.css}" />
         <link rel="shortcut icon" th:href="@{images/mii_hd_icon.ico}">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>    
-        
+
     </head>
     <body>
 
@@ -47,33 +47,45 @@
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span12">
-
                         <div class="widget-box">
-                            <div class="widget-title"> <span class="icon"> <i class="icon-refresh"></i> </span>
-                                <h5>News updates</h5>
-                            </div>
                             <div class="widget-content nopadding updates">
-                                <div class="table-responsive">
-                                    <div class="new-update clearfix" th:each=" as : ${theories}">
-                                        <div class="update-done" >
-                                            <a th:href="'theory_detail?id='+${as.id}" title="">
-                                                <h4 th:text="${as.theoryTitle}"></h4>
-                                            </a>
-                                            <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
-                                        </div>
-                                    </div>
+                                <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                                    <h5></h5>
+                                </div>
+                                <div class="widget-content nopadding">
+                                    <table class="table table-bordered data-table" >
+                                        <thead>
+                                            <tr>
+                                                <th><h4 style="float: left">Theory</h4></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr class="gradeX" th:each=" as : ${theories}">
+
+                                                <td> 
+                                                    <h5>
+                                                        <a th:text="${as.theoryTitle}" th:href="'theory_detail?id='+${as.id}"></a>
+                                                    </h5>
+                                                    <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--end-main-container-part-->
+    <!--Footer-part-->
+    <div th:replace="fragments/footer::footer"></div> 
+    <script src="js/jquery.min.js"></script> 
+    <script src="js/jquery.dataTables.min.js"></script> 
+    <script src="js/matrix.tables.js"></script>
 
-    <div th:replace="fragments/footer::footer"></div>
-   
 </body>
 </html>
