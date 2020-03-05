@@ -54,10 +54,10 @@ public class ForumController {
         return "forum";
     }
 
-   @GetMapping("/forum_detail")
+    @GetMapping("/forum_detail")
 //    @ResponseBody
     public String forumDetail(@RequestParam String id, Model model, HttpServletRequest request) {
-
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         model.addAttribute("namam", request.getSession().getAttribute("employee"));
         System.out.println("nama33 = " + model.getAttribute("nama"));
@@ -79,10 +79,12 @@ public class ForumController {
         model.addAttribute("empname", empaService.getByCreateF(request.getParameter("id")));
 //        model.addAttribute("employee", empService.getById("empname.employee.id"));
         System.out.println("isi emp = " + model.getAttribute("empname"));
-        System.out.println("id = "+id);
+        System.out.println("id = " + id);
         model.addAttribute("idforum", id);
         return "forum_detail";
-    };
+    }
+
+    ;
     
 //    @GetMapping("/forum_detail")
 //    @ResponseBody
@@ -135,7 +137,7 @@ public class ForumController {
         fservice.save(f);
         System.out.println(topic + description + ts.toString());
         int a = (int) request.getSession().getAttribute("forum");
-        EmpAction ea = new EmpAction(0,"create",ts,"",0, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(a));
+        EmpAction ea = new EmpAction(0, "create", ts, "", 0, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(a));
         empaService.save(ea);
         return "redirect:/forum";
     }
@@ -154,7 +156,7 @@ public class ForumController {
 //        System.out.println(topic + description + date);
         EmpAction ea = new EmpAction(0, "reply", date, comment, 2, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(Integer.parseInt(idforum)));
         empaService.save(ea);
-        return "redirect:/forum_detail?id="+idforum;
+        return "redirect:/forum_detail?id=" + idforum;
     }
 
     @GetMapping("/searchnya")
