@@ -21,4 +21,7 @@ public interface ForumRepository extends CrudRepository<Forum, Integer>{
     
     @Query(value = "SELECT * FROM Forum WHERE id LIKE ?1 OR topic LIKE ?1 OR forum_description LIKE ?1 OR date_forum LIKE ?1", nativeQuery = true)
     public Iterable<Forum> searchForum(String key);
+    
+    @Query(value = "SELECT id FROM Forum ORDER BY id DESC LIMIT 1", nativeQuery = true)
+    public Integer getByDataDesc();
 }

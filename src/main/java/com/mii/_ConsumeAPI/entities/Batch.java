@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author iqbaloutlaw
+ * @author BWP
  */
 @Entity
 @Table(name = "batch")

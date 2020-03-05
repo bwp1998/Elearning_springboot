@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author iqbaloutlaw
+ * @author BWP
  */
 @Entity
 @Table(name = "question")
@@ -52,19 +52,19 @@ public class Question implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 2000)
     @Column(name = "question")
     private String question;
-    @Size(max = 25)
+    @Size(max = 1000)
     @Column(name = "option_1")
     private String option1;
-    @Size(max = 25)
+    @Size(max = 1000)
     @Column(name = "option_2")
     private String option2;
-    @Size(max = 25)
+    @Size(max = 1000)
     @Column(name = "option_3")
     private String option3;
-    @Size(max = 25)
+    @Size(max = 1000)
     @Column(name = "option_4")
     private String option4;
     @Basic(optional = false)
@@ -101,6 +101,8 @@ public class Question implements Serializable {
         this.questionKey = questionKey;
         this.quiz = quiz;
     }
+    
+    
 
     public Integer getId() {
         return id;

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author iqbaloutlaw
+ * @author BWP
  */
 @Entity
 @Table(name = "answer_question")

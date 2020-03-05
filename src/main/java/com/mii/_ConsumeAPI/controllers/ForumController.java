@@ -126,8 +126,6 @@ public class ForumController {
     public String save(Model model, HttpServletRequest request) {
         String topic = request.getParameter("topic");
         String description = request.getParameter("description");
-//        String employee = request.getParameter("employee");
-//        String forum = request.getParameter("forum");
         String pattern = "yyyy-mm-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
@@ -137,7 +135,8 @@ public class ForumController {
         Forum f = new Forum(0, topic, description, ts);
         fservice.save(f);
         System.out.println(topic + description + ts.toString());
-        int a = (int) request.getSession().getAttribute("forum");
+        int a = (int) fservice.getByDataDesc();
+        System.out.println("ID FORUM= "+ a);
         EmpAction ea = new EmpAction(0, "create", ts, "", 0, new Employee(request.getSession().getAttribute("employeeid").toString()), new Forum(a));
         empaService.save(ea);
         return "redirect:/forum";

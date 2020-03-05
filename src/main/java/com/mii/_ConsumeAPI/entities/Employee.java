@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author iqbaloutlaw
+ * @author BWP
  */
 @Entity
 @Table(name = "employee")
@@ -54,7 +54,7 @@ public class Employee implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "name")
     private String name;
-    // @Pattern(regexp="[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -94,11 +94,9 @@ public class Employee implements Serializable {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.isActive = isActive;        
+        this.isActive = isActive;
         this.hireDate = hireDate;
     }
-    
-    
 
     public String getId() {
         return id;

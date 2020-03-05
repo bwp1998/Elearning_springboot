@@ -37,16 +37,16 @@
             }
             #quiz
             {
-/*                height: 330px;
-                width: 60%;
-                position: absolute;
-                left:20%;
-                top: 30%;
-                transform: translateX(-50) translateY(-50);
-                background: rgba(255,255,255,0.5);
-                padding: 20px;
-                border: 1px solid #00038c;
-                box-shadow: 0 0 8px 3px #fff;*/
+                /*                height: 330px;
+                                width: 60%;
+                                position: absolute;
+                                left:20%;
+                                top: 30%;
+                                transform: translateX(-50) translateY(-50);
+                                background: rgba(255,255,255,0.5);
+                                padding: 20px;
+                                border: 1px solid #00038c;
+                                box-shadow: 0 0 8px 3px #fff;*/
 
             }
             #question
@@ -111,16 +111,16 @@
             {
                 font-size:30px;
                 text-align: center;
-/*              height: 100px;
-                width: 60%;*/
-/*              position: absolute;
-                left:20%;
-                top: 30%;
-                transform: translateX(-50) translateY(-50);
-                background: rgba(255,255,255,0.5);
-                padding: 20px;
-                border: 1px solid #00038c;
-                box-shadow: 0 0 8px 3px #fff;*/
+                /*              height: 100px;
+                                width: 60%;*/
+                /*              position: absolute;
+                                left:20%;
+                                top: 30%;
+                                transform: translateX(-50) translateY(-50);
+                                background: rgba(255,255,255,0.5);
+                                padding: 20px;
+                                border: 1px solid #00038c;
+                                box-shadow: 0 0 8px 3px #fff;*/
             }
 
         </style>
@@ -133,26 +133,11 @@
         <!--close-Header-part--> 
 
         <!--top-Header-menu-->
-        <div id="user-nav" class="navbar navbar-inverse">
+        <div th:replace="fragments/header::header"></div>
 
-            <ul class="nav">
-                <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i><span class="text" th:text="${nama}"></span><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a th:href="logout"><i class="icon-key"></i> Log Out</a></li>
-                    </ul>
-                </li>
-                <li class=""><a title="" th:href="logout"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
-            </ul>
-        </div>
-        <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
-            <ul>
-                <li><a th:href="@{/}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-                <li class="active"> <a th:href="theory"><i class="icon icon-tasks"></i> <span>Theory</span></a> </li>
-                <li><a href="forum.html"><i class="icon icon-comments"></i> <span>Forum</span></a></li>
-                <li><a href="tables.html"><i class="icon icon-book"></i> <span>History Quiz</span></a></li>
-        </div>
+        <!--sidebar-menu-->
+        <div th:replace="fragments/sidebar::sidebar"></div>
+        <!--sidebar-menu-->
         <!--sidebar-menu-->
 
         <!--main-container-part-->
@@ -168,17 +153,21 @@
                     <div class="span12">
                         <div class="widget-box">
                             <div class="widget-title"> <span class="icon"> <i class="icon-refresh"></i> </span>
-                                <h5>Question</h5>
+                                <h5>Question</h5> 
+                                <div id="subwrapper" style="float:right; padding-right: 10px; padding-top: 5px">
+                                    <!--untuk timenya-->
+                                </div>
                             </div>
                             <div class="widget-content nopadding updates">
-
+                                <!--quiz-->
+                                
                                 <div id="quiz">
-                                <div id="question"></div>
-                                <label class="option"><input type="radio" name="option" value="1" /><span id="option1"></span></label>
-                                <label class="option"><input type="radio" name="option" value="2" /><span id="option2"></span></label>
-                                <label class="option"><input type="radio" name="option" value="3" /><span id="option3"></span></label>
-                                <label class="option"><input type="radio" name="option" value="4" /><span id="option4"></span></label>
-                                <button id="next" onclick="nextques();">NEXT</button>
+                                    <div id="question"></div>
+                                    <label class="option"><input type="radio" name="option" value="1" /><span id="option1"></span></label>
+                                    <label class="option"><input type="radio" name="option" value="2" /><span id="option2"></span></label>
+                                    <label class="option"><input type="radio" name="option" value="3" /><span id="option3"></span></label>
+                                    <label class="option"><input type="radio" name="option" value="4" /><span id="option4"></span></label>
+                                    <button id="next" onclick="nextques();">NEXT</button>
                                 </div>
                                 <div id="result">
                                 </div>
@@ -191,92 +180,82 @@
             </div>
         </div>
 
-    </div>
-</div>
-</div>
-</div>
-<!--end-main-container-part-->
+        <!--end-main-container-part-->
 
-<!--Footer-part-->
+        <!--Footer-part-->
 
-<script th:inline="javascript" >
+        <script th:inline="javascript" >
+            var questions = [
+                /*[# th:each="as : ${questions}"]*/
+                ["[(${as.question})]", "[(${as.option1})]", "[(${as.option2})]", "[(${as.option3})]", "[(${as.option4})]", "[(${as.questionKey})]"],
+                        /*[/]*/
+            ];
+        </script>
 
+        <script>
+            var quiz = document.getElementById("quiz");
+            var ques = document.getElementById("question");
+            var opt1 = document.getElementById("option1");
+            var opt2 = document.getElementById("option2");
+            var opt3 = document.getElementById("option3");
+            var opt4 = document.getElementById("option4");
+            var res = document.getElementById("result");
+            var nextbutton = document.getElementById("next");
+            var q = document.getElementById('quit');
 
+            var tques = questions.length;
+            var score = 0;
+            var quesindex = 0;
+            function quit()
+            {
+                quiz.style.display = 'none';
+                result.style.display = '';
+                var f = score / tques;
+                result.textContent = "SCORE =" + f * 100;
+                q.style.display = "none";
+            }
+            function give_ques(quesindex)
+            {
+                ques.textContent = quesindex + 1 + ". " + questions[quesindex][0];
+                opt1.textContent = questions[quesindex][1];
+                opt2.textContent = questions[quesindex][2];
+                opt3.textContent = questions[quesindex][3];
+                opt4.textContent = questions[quesindex][4];
+                return;// body...
+            }
+            ;
+            give_ques(0);
+            
+            function nextques()
+            {
+                var selected_ans = document.querySelector('input[type=radio]:checked');
+                if (!selected_ans)
+                {
+                    alert("SELECT AN OPTION");
+                    return;
+                }
 
-    var questions = [
-        /*[# th:each="as : ${questions}"]*/
-        ["[(${as.question})]", "[(${as.option1})]", "[(${as.option2})]", "[(${as.option3})]", "[(${as.option4})]", "[(${as.questionKey})]"],
-                /*[/]*/
-    ];
-
-
-
-</script>
-
-<script>
-
-    var quiz = document.getElementById("quiz");
-    var ques = document.getElementById("question");
-    var opt1 = document.getElementById("option1");
-    var opt2 = document.getElementById("option2");
-    var opt3 = document.getElementById("option3");
-    var opt4 = document.getElementById("option4");
-    var res = document.getElementById("result");
-    var nextbutton = document.getElementById("next");
-    var q = document.getElementById('quit');
-
-    var tques = questions.length;
-    var score = 0;
-    var quesindex = 0;
-    function quit()
-    {
-        quiz.style.display = 'none';
-        result.style.display = '';
-        var f = score / tques;
-        result.textContent = "SCORE =" + f * 100;
-        q.style.display = "none";
-    }
-    function give_ques(quesindex)
-    {
-        ques.textContent = quesindex + 1 + ". " + questions[quesindex][0];
-        opt1.textContent = questions[quesindex][1];
-        opt2.textContent = questions[quesindex][2];
-        opt3.textContent = questions[quesindex][3];
-        opt4.textContent = questions[quesindex][4];
-        return;// body...
-    }
-    ;
-    give_ques(0);
-    function nextques()
-    {
-        var selected_ans = document.querySelector('input[type=radio]:checked');
-        if (!selected_ans)
-        {
-            alert("SELECT AN OPTION");
-            return;
-        }
-
-        if (selected_ans.value == questions[quesindex][5])
-        {
-            score = score + 1;
-        }
-        selected_ans.checked = false;
-        quesindex++;
-        if (quesindex == tques - 1)
-            nextbutton.textContent = "Finish";
-        var f = score / tques;
-        if (quesindex == tques)
-        {
-            q.style.display = 'none';
-            quiz.style.display = 'none';
-            result.style.display = '';
-            result.textContent = "SCORED:" + (f * 100).toFixed(2) + "%";
-            return;
-        }
-        give_ques(quesindex);
-
-    }
-</script>
-<div th:replace="fragments/footer::footer"></div>
-</body>
+                if (selected_ans.value == questions[quesindex][5])
+                {
+                    score = score + 1;
+                }
+                selected_ans.checked = false;
+                quesindex++;
+                if (quesindex == tques - 1)
+                    nextbutton.textContent = "Finish";
+                var f = score / tques;
+                if (quesindex == tques)
+                {
+                    q.style.display = 'none';
+                    quiz.style.display = 'none';
+                    result.style.display = '';
+                    result.textContent = "SCORED:" + (f * 100).toFixed(2) + "%";
+                    return;
+                }
+                
+                give_ques(quesindex);
+            }
+        </script>
+        <div th:replace="fragments/footer::footer"></div>
+    </body>
 </html>

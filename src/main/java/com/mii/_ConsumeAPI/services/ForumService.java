@@ -30,26 +30,31 @@ public class ForumService {
 //    
 //    private static final RestTemplate restTemplate = new RestTemplate();
 //    
-  @Autowired
+
+    @Autowired
     ForumRepository forumRepository;
-  
-  public Iterable<Forum> getAll(){
-      return forumRepository.findAll();
-  }
-  
-  public Forum getById(String id){
-      return forumRepository.findById(Integer.parseInt(id)).get();
-  }
-  
-  public Forum save(Forum forumm){
-      return forumRepository.save(forumm);
-  }
-  
-  public void delete(String id){
-      forumRepository.delete(new Forum(Integer.parseInt(id)));
-  }
-  
-  public Iterable<Forum> searchForum(String key){
-     return forumRepository.searchForum(key);
-  }
+
+    public Iterable<Forum> getAll() {
+        return forumRepository.findAll();
+    }
+
+    public Forum getById(String id) {
+        return forumRepository.findById(Integer.parseInt(id)).get();
+    }
+
+    public Forum save(Forum forumm) {
+        return forumRepository.save(forumm);
+    }
+
+    public void delete(String id) {
+        forumRepository.delete(new Forum(Integer.parseInt(id)));
+    }
+
+    public Iterable<Forum> searchForum(String key) {
+        return forumRepository.searchForum(key);
+    }
+
+    public Integer getByDataDesc(){
+        return forumRepository.getByDataDesc();
+    }
 }

@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,13 +21,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author iqbaloutlaw
+ * @author BWP
  */
 @Entity
 @Table(name = "emp_action")
@@ -41,27 +42,21 @@ public class EmpAction implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 7)
     @Column(name = "ACTION")
     private String action;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "action_date")
     @Temporal(TemporalType.DATE)
     private Date actionDate;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1000)
+    @Size(max = 1000)
     @Column(name = "action_comment")
     private String actionComment;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "rate")
-    private int rate;
+    private Integer rate;
     @JoinColumn(name = "employee", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Employee employee;
@@ -76,14 +71,7 @@ public class EmpAction implements Serializable {
         this.id = id;
     }
 
-    public EmpAction(Integer id, Date actionDate, String actionComment, int rate) {
-        this.id = id;
-        this.actionDate = actionDate;
-        this.actionComment = actionComment;
-        this.rate = rate;
-    }
-
-    public EmpAction(Integer id, String action, Date actionDate, String actionComment, int rate, Employee employee, Forum forum) {
+    public EmpAction(Integer id, String action, Date actionDate, String actionComment, Integer rate, Employee employee, Forum forum) {
         this.id = id;
         this.action = action;
         this.actionDate = actionDate;
@@ -127,11 +115,11 @@ public class EmpAction implements Serializable {
         this.actionComment = actionComment;
     }
 
-    public int getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 

@@ -27,20 +27,22 @@ public class QuestionController {
 
     @Autowired
     QuestionServices service;
-    
- 
 
     @RequestMapping("/answer")
     public String question(Model model, HttpServletRequest request) {
         model.addAttribute("nama", "Hallo " + request.getSession().getAttribute("employee"));
         model.addAttribute("questions", service.getByQuiz(request.getParameter("id")));
         System.out.println(request.getParameter("id"));
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
+
 //        model.addAttribute("questions", service.getAll());
         return "answer";
     }
 
     @RequestMapping("/question_input")
     public String theory_input(Model model, HttpServletRequest request) {
+        model.addAttribute("rolenya", request.getSession().getAttribute("role"));
+
 //        model.addAttribute("nama", "Hallo "+request.getSession().getAttribute("employee"));
 //        model.addAttribute("questions", service.getAll());
         return "question_input";
@@ -61,6 +63,4 @@ public class QuestionController {
         service.save(t);
         return "redirect:/question_input";
     }
-    
-
 }
