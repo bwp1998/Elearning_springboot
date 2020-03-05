@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>E-Learning</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{css/bootstrap-responsive.min.css}" />
+        <link rel="stylesheet" th:href="@{css/fullcalendar.css}" />
+        <link rel="stylesheet" th:href="@{css/matrix-style.css}" />
+        <link rel="stylesheet" th:href="@{css/matrix-media.css}" />
+        <link th:href="@{font-awesome/css/font-awesome.css}" rel="stylesheet" />
+        <link rel="stylesheet" href="@{css/jquery.gritter.css}" />
+        <link rel="shortcut icon" th:href="@{images/mii_hd_icon.ico}">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!--Header-part-->
+        <div id="header">
+            <h1></h1>
+        </div>
+        <!--close-Header-part--> 
+
+        <!--top-Header-menu-->
+        <div th:replace="fragments/header::header"></div>
+        <!--sidebar-menu-->
+        <div th:replace="fragments/sidebar::sidebar"></div>
+        <!--sidebar-menu-->
+
+        <!--main-container-part-->
+        <div id="content">
+            <div id="content-header">
+                <div id="breadcrumb">
+                    <a th:href="@{/history_quiz}" title="Go to Forum" class="tip-bottom"><i class="icon-tasks"></i> History Action
+                    </a>
+                </div>
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="widget-box">
+                                <div class="widget-content nopadding updates">
+                                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                                        <h5></h5>
+                                    </div>
+                                    <div class="widget-content nopadding">
+                                        <table class="table table-bordered data-table" >
+                                            <thead>
+                                                <tr>
+                                                    <th>Action</th>
+                                                    <th>Date</th>
+                                                    <th>Forum</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody >
+                                                <tr class="gradeX" th:each="as : ${actions}">
+                                                    <td> <a th:text="${as.action}"></a></td>
+                                                    <td> <a th:text="${as.actionDate}"></a></td>
+                                                    <td> <a th:href="${'/forum_detail?id='+as.forum.id}" th:text="${as.forum.topic}"></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--end-main-container-part-->
+
+        <!--Footer-part-->
+        <div th:replace="fragments/footer::footer"></div> 
+        <script src="js/jquery.min.js"></script> 
+        <script src="js/jquery.dataTables.min.js"></script> 
+        <script src="js/matrix.tables.js"></script>
+    </body>
+</html>

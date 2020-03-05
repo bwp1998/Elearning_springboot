@@ -45,4 +45,8 @@ public class EmpActionService {
     public List<EmpAction> getByCreateF(String id){
         return empactionRepository.getByCreateF(Integer.parseInt(id));
     }
+    
+    public List<EmpAction> getByEmployee(String id){
+        return empactionRepository.getByEmployee(id);
+    }
 }
