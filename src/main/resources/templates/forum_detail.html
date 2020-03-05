@@ -43,7 +43,7 @@
                         <strong th:text="${forum.topic}"></strong>
                     </h1>
                     <h5 th:each=" as : ${empname}" style="padding-left: 20px">
-                        <strong th:text="CreatedBy +' '+ ${as.employee.name}"></strong>
+                        <strong th:text="Created+' '+By +' '+ ${as.employee.name}"></strong>
                     </h5>
                 </div>
                 <div class="container-fluid">
