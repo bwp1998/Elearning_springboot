@@ -57,7 +57,7 @@ public class Theory implements Serializable {
     @Size(min = 1, max = 4000)
     @Column(name = "theory_definiton")
     private String theoryDefiniton;
-    @Size(max = 100)
+    @Size(max = 500)
     @Column(name = "file_matery")
     private String fileMatery;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "theory", fetch = FetchType.LAZY)

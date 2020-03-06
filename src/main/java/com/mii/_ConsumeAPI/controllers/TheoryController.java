@@ -100,7 +100,7 @@ public class TheoryController {
 
         String title = request.getParameter("title");
         String definition = request.getParameter("definition");
-        String upload = UPLOADED_FOLDER + file.getOriginalFilename();
+        String upload = "http://localhost:8083/file/" + file.getOriginalFilename();
         int kelas = Integer.parseInt(request.getParameter("kelas"));
         Theory t = new Theory(0, title, definition, upload, new Employee("16154"), new StudyClass(kelas));
         theoryservice.save(t);

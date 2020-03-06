@@ -66,7 +66,7 @@
                                                     <h5>
                                                         <a th:text="${as.theoryTitle}" th:href="'theory_detail?id='+${as.id}"></a>
                                                     </h5>
-                                                    <span><a href="#">download materi <i class="icon-download-alt"></i></a></span> 
+                                                    <span><a th:href="${as.fileMatery}" download>download materi <i class="icon-download-alt"></i></a></span> 
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -74,18 +74,17 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--Footer-part-->
-    <div th:replace="fragments/footer::footer"></div> 
-    <script src="js/jquery.min.js"></script> 
-    <script src="js/jquery.dataTables.min.js"></script> 
-    <script src="js/matrix.tables.js"></script>
+        <!--Footer-part-->
+        <div th:replace="fragments/footer::footer"></div> 
+        <script src="js/jquery.min.js"></script> 
+        <script src="js/jquery.dataTables.min.js"></script> 
+        <script src="js/matrix.tables.js"></script>
 
-</body>
+    </body>
 </html>
