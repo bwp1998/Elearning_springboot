@@ -160,7 +160,6 @@
                             </div>
                             <div class="widget-content nopadding updates">
                                 <!--quiz-->
-                                
                                 <div id="quiz">
                                     <div id="question"></div>
                                     <label class="option"><input type="radio" name="option" value="1" /><span id="option1"></span></label>
@@ -172,8 +171,8 @@
                                 <div id="result">
                                 </div>
                                 <button id="quit" onclick="quit();">Quit</button>
+                                <!--<input type="hidden" name="scorenya" id="scorenya">-->
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -211,6 +210,7 @@
                 quiz.style.display = 'none';
                 result.style.display = '';
                 var f = score / tques;
+
                 result.textContent = "SCORE =" + f * 100;
                 q.style.display = "none";
             }
@@ -225,7 +225,7 @@
             }
             ;
             give_ques(0);
-            
+
             function nextques()
             {
                 var selected_ans = document.querySelector('input[type=radio]:checked');
@@ -244,15 +244,21 @@
                 if (quesindex == tques - 1)
                     nextbutton.textContent = "Finish";
                 var f = score / tques;
+
                 if (quesindex == tques)
                 {
                     q.style.display = 'none';
                     quiz.style.display = 'none';
                     result.style.display = '';
                     result.textContent = "SCORED:" + (f * 100).toFixed(2) + "%";
+//                    document.body.innerHTML +='<form id="dynForm" th:action="/answerBundle/save" method="post" >';
+//                    document.body.innerHTML +='<input type="hidden" name="scorenya" value= "(f * 100).toFixed(2)" >';
+////                    document.getElementById('scorenya').value = (f * 100).toFixed(2);
+//                    document.body.innerHTML +='</form>';
+//                    document.getElementById("dynForm").submit();
                     return;
                 }
-                
+
                 give_ques(quesindex);
             }
         </script>

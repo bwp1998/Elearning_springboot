@@ -13,20 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
  *
  * @author HENSTECH
  */
+@Service
 public class AnswerQuestionService {
-     @Value("${data.url.jwt}")
-    private String url;
-
-    @Value("${data.api.key}")
-    private String key;
-
-    private static final RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
     AnswerQuestionRepository answerquestionRepository;
@@ -45,14 +40,5 @@ public class AnswerQuestionService {
 
     public void delete(String id) {
         answerquestionRepository.delete(new AnswerQuestion(Integer.parseInt(id)));
-    }
-
-    private HttpHeaders getHeaders() {
-        return new HttpHeaders() {
-            {
-                set("Authorization", key);
-                setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-            }
-        };
     }
 }
