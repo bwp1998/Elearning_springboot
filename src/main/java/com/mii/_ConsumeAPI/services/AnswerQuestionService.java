@@ -9,6 +9,7 @@ import com.mii._ConsumeAPI.entities.AnswerQuestion;
 import com.mii._ConsumeAPI.repositories.AnswerQuestionRepository;
 import com.mii._ConsumeAPI.repositories.QuestionRepositories;
 import java.util.Collections;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -37,8 +38,13 @@ public class AnswerQuestionService {
     public AnswerQuestion save(AnswerQuestion answer) {
         return answerquestionRepository.save(answer);
     }
+    
 
     public void delete(String id) {
         answerquestionRepository.delete(new AnswerQuestion(Integer.parseInt(id)));
+    }
+    
+    public Iterable<AnswerQuestion> getByBundle(String id){
+        return answerquestionRepository.getByBundle(id);
     }
 }

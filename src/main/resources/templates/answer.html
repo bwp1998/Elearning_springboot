@@ -166,12 +166,25 @@
                                     <label class="option"><input type="radio" name="option" value="2" /><span id="option2"></span></label>
                                     <label class="option"><input type="radio" name="option" value="3" /><span id="option3"></span></label>
                                     <label class="option"><input type="radio" name="option" value="4" /><span id="option4"></span></label>
+                                    <input type="text" name="option" id="id">
                                     <button id="next" onclick="nextques();">NEXT</button>
                                 </div>
                                 <div id="result">
+
                                 </div>
+<!--                                <div id="demox"></div>
+                                <div id="demoy"></div>-->
+                                <form th:action="@{answer/savescore}" method="POST">
+                                    <input type="text" name="answer" id="demox">
+                                    <input type="text" name="istrue" id="demoy">
+                                    <input type="text" name="totalscore" id="myText">
+                                    <input type="text" name="idquiz" id="myId" readonly>
+                                    <button type="submit">save</button>
+                                </form>
+                                
                                 <button id="quit" onclick="quit();">Quit</button>
                                 <!--<input type="hidden" name="scorenya" id="scorenya">-->
+
                             </div>
                         </div>
                     </div>
@@ -186,12 +199,13 @@
         <script th:inline="javascript" >
             var questions = [
                 /*[# th:each="as : ${questions}"]*/
-                ["[(${as.question})]", "[(${as.option1})]", "[(${as.option2})]", "[(${as.option3})]", "[(${as.option4})]", "[(${as.questionKey})]"],
+                ["[(${as.question})]", "[(${as.option1})]", "[(${as.option2})]", "[(${as.option3})]", "[(${as.option4})]", "[(${as.questionKey})]", "[(${as.id})]"],
                         /*[/]*/
             ];
         </script>
 
         <script>
+            var id = document.getElementById("id");
             var quiz = document.getElementById("quiz");
             var ques = document.getElementById("question");
             var opt1 = document.getElementById("option1");
@@ -205,6 +219,9 @@
             var tques = questions.length;
             var score = 0;
             var quesindex = 0;
+            var saveanswer = [];
+            var saveistrue = [];
+            var saveid = [];
             function quit()
             {
                 quiz.style.display = 'none';
@@ -221,6 +238,8 @@
                 opt2.textContent = questions[quesindex][2];
                 opt3.textContent = questions[quesindex][3];
                 opt4.textContent = questions[quesindex][4];
+                id.textContent = questions[quesindex][6]; 
+                document.getElementById("id").value = questions[quesindex][6];
                 return;// body...
             }
             ;
@@ -229,6 +248,7 @@
             function nextques()
             {
                 var selected_ans = document.querySelector('input[type=radio]:checked');
+                var id_ans = document.querySelector('input[type=text]');
                 if (!selected_ans)
                 {
                     alert("SELECT AN OPTION");
@@ -238,24 +258,34 @@
                 if (selected_ans.value == questions[quesindex][5])
                 {
                     score = score + 1;
+                    saveanswer.push(selected_ans.value);
+                    saveistrue.push(1);
+                    saveid.push(id_ans.value);
+                } else {
+                    saveanswer.push(selected_ans.value);
+                    saveistrue.push(0);
+                    saveid.push(id_ans.value);
                 }
                 selected_ans.checked = false;
                 quesindex++;
                 if (quesindex == tques - 1)
                     nextbutton.textContent = "Finish";
                 var f = score / tques;
-
                 if (quesindex == tques)
                 {
                     q.style.display = 'none';
                     quiz.style.display = 'none';
                     result.style.display = '';
                     result.textContent = "SCORED:" + (f * 100).toFixed(2) + "%";
-//                    document.body.innerHTML +='<form id="dynForm" th:action="/answerBundle/save" method="post" >';
-//                    document.body.innerHTML +='<input type="hidden" name="scorenya" value= "(f * 100).toFixed(2)" >';
-////                    document.getElementById('scorenya').value = (f * 100).toFixed(2);
-//                    document.body.innerHTML +='</form>';
-//                    document.getElementById("dynForm").submit();
+                    var totalscore = (f * 100).toFixed(2);
+                    var x = saveanswer.toString();
+                    var y = saveistrue.toString();
+                    var z = saveid.toString();
+                    document.getElementById("demox").value = x;
+                    document.getElementById("demoy").value = y;
+                    document.getElementById("myId").value = z;
+                    document.getElementById("myText").value = f * 100;
+                    
                     return;
                 }
 

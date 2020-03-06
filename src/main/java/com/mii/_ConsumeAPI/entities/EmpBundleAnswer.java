@@ -50,7 +50,6 @@ public class EmpBundleAnswer implements Serializable {
     @NotNull
     @Column(name = "score")
     private int score;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "answer_date")
     @Temporal(TemporalType.DATE)
@@ -73,6 +72,15 @@ public class EmpBundleAnswer implements Serializable {
         this.score = score;
         this.answerDate = answerDate;
     }
+
+    public EmpBundleAnswer(Integer id, int score, Date answerDate, Employee employee) {
+        this.id = id;
+        this.score = score;
+        this.answerDate = answerDate;
+        this.employee = employee;
+    }
+    
+    
 
     public Integer getId() {
         return id;

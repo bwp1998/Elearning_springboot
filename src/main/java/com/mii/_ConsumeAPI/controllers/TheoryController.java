@@ -36,7 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class TheoryController {
 
-    private static final String UPLOADED_FOLDER = "D://METRO_DATA//ProjectWEB//33_ConsumeAPI//src//main//resources//static//file//";
+    private static final String UPLOADED_FOLDER = "D://PROJECT//E_learningSPRINGBOOT//src//main//resources//static//file//";
 
     @Autowired
     TheoryService theoryservice;
@@ -102,7 +102,8 @@ public class TheoryController {
         String definition = request.getParameter("definition");
         String upload = "http://localhost:8083/file/" + file.getOriginalFilename();
         int kelas = Integer.parseInt(request.getParameter("kelas"));
-        Theory t = new Theory(0, title, definition, upload, new Employee("16154"), new StudyClass(kelas));
+        String idEmployee = request.getSession().getAttribute("employeeid").toString();
+        Theory t = new Theory(0, title, definition, upload, new Employee(idEmployee), new StudyClass(kelas));
         theoryservice.save(t);
         System.out.println(title + definition + upload + kelas);
         return "redirect:/theory";

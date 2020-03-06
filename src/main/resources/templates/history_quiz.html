@@ -46,16 +46,16 @@
                                         <table class="table table-bordered data-table" >
                                             <thead>
                                                 <tr>
-                                                    <th>a</th>
-                                                    <th>a</th>
-                                                    <th>a</th>
+                                                    <th>Id Quiz</th>
+                                                    <th>Score</th>
+                                                    <th>Answer Date</th>
                                                 </tr>
                                             </thead>
                                             <tbody >
-                                                <tr class="gradeX">
-                                                    <td> <a th:text="@{a}"></a></td>
-                                                    <td> <a th:text="@{a}"></a></td>
-                                                    <td> <a th:text="@{a}"></a></td>
+                                                <tr class="gradeX" th:each="as : ${quizzz}">
+                                                    <td> <a th:text="${as.id}"></a></td>
+                                                    <td> <a th:text="${as.score}"></a></td>
+                                                    <td> <a th:text="${as.answerDate}"></a></td>
                                                 </tr>
                                             </tbody>
                                         </table>

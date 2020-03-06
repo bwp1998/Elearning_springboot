@@ -7,6 +7,8 @@ package com.mii._ConsumeAPI.repositories;
 
 import com.mii._ConsumeAPI.entities.AnswerQuestion;
 import com.mii._ConsumeAPI.entities.Question;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AnswerQuestionRepository extends CrudRepository<AnswerQuestion, Integer>{
-//    @Query(value="Select * from question where quiz = ?1", nativeQuery = true)
-//    public List<Question> getByQuiz(String id);
+    @Query(value="Select * from answer_question where emp_budle_answer = ?1", nativeQuery = true)
+    public Iterable<AnswerQuestion> getByBundle(String id);
 }

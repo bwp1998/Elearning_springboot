@@ -69,6 +69,16 @@ public class AnswerQuestion implements Serializable {
         this.isTrue = isTrue;
     }
 
+    public AnswerQuestion(Integer id, String answer, int isTrue, EmpBundleAnswer empBundleAnswer, Question question) {
+        this.id = id;
+        this.answer = answer;
+        this.isTrue = isTrue;
+        this.empBundleAnswer = empBundleAnswer;
+        this.question = question;
+    }
+
+    
+    
     public Integer getId() {
         return id;
     }
